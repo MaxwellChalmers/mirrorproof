@@ -1,0 +1,117 @@
+---
+layout: default
+---
+<div class="art-piece">
+  <h1>{{ page.title }}</h1>
+  
+  {% if page.audio %}
+  <div class="audio-player">
+    <audio controls>
+      <source src="{{ page.audio | relative_url }}" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  {% endif %}
+  
+  <div class="art-details">
+    {{ content }}
+  </div>
+  
+  {% if page.categories %}
+  <div class="art-categories">
+    <h3>Categories:</h3>
+    <ul>
+      {% for category in page.categories %}
+      <li><a href="{{ '/categories/' | append: category | relative_url }}">{{ category }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+
+<style>
+.art-piece {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+}
+
+.audio-player {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.audio-player audio {
+  width: 100%;
+  max-width: 500px;
+}
+
+.art-details {
+  margin: 2rem 0;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.art-details h2 {
+  margin-top: 2rem;
+  color: #333;
+}
+
+.art-details p {
+  margin-bottom: 1.5rem;
+}
+
+.art-categories {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eee;
+}
+
+.art-categories ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.art-categories a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #f5f5f5;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #333;
+  transition: background 0.3s ease;
+}
+
+.art-categories a:hover {
+  background: #e0e0e0;
+}
+
+/* Poetry-specific styles */
+.art-details pre {
+  white-space: pre-wrap;
+  font-family: 'Georgia', serif;
+  line-height: 1.8;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+/* Dialog-specific styles */
+.art-details .dialog {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 4px;
+}
+
+.art-details .dialog-speaker {
+  font-weight: bold;
+  color: #444;
+}
+</style> 

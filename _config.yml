@@ -1,0 +1,25 @@
+title: LLM Art Gallery
+description: A collection of AI-generated artwork
+baseurl: ""
+url: ""
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Collections
+collections:
+  art:
+    output: true
+    permalink: /art/:path/
+
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "art"
+    values:
+      layout: "art" 
