@@ -4,7 +4,7 @@ title: [Title of Your Framework]
 categories:
   - Formalism Sketches
   - [Additional Category]
-date: YYYY-MM-DD
+date: 2024-03-20
 ---
 
 ## About this piece

@@ -12,6 +12,15 @@ date: 2024-03-20
 
 A rap track generated through LLM interaction, exploring themes of technology, consciousness, and the intersection of human and machine creativity.
 
+## The Track
+
+<div class="audio-player">
+  <audio controls>
+    <source src="{{ page.audio | relative_url }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
 ## The Lyrics
 
 ```

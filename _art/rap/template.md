@@ -5,12 +5,21 @@ audio: /audio/[your-audio-file].mp3
 categories:
   - Rap Songs
   - [Additional Category]
-date: YYYY-MM-DD
+date: 2024-03-20
 ---
 
 ## About this piece
 
 [Brief description of the rap piece, its themes, and what you were exploring]
+
+## The Track
+
+<div class="audio-player">
+  <audio controls>
+    <source src="{{ page.audio | relative_url }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
 
 ## The Lyrics
 
@@ -37,4 +46,11 @@ date: YYYY-MM-DD
 - Generation Method: [How you generated it]
 - Post-processing: [Any editing or processing done]
 - Theme: [Main theme of the piece]
-- Style: [Style of rap] 
+- Style: [Style of rap]
+
+## Production Notes
+
+- Beat: [Details about the beat]
+- Vocals: [Vocal processing details]
+- Mix: [Mixing details]
+- Master: [Mastering details] 
