@@ -1,18 +1,18 @@
 ---
 layout: home
-title: LLM Art Gallery
+title: mirrorproof
 ---
 
-# Welcome to the LLM Art Gallery
+# Welcome to mirrorproof
 
-This is a collection of AI-generated artwork, organized by categories and automatically generated from the file system.
+A collection of AI-generated art and symbolic explorations, organized by categories and automatically generated from the file system.
 
 ## Categories
 
 {% assign categories = site.art | map: "categories" | uniq | sort %}
 <div class="category-grid">
   {% for category in categories %}
-    <a href="{{ '/categories/' | append: category | relative_url }}" class="category-card">
+    <a href="{{ '/categories/' | append: category | downcase | relative_url }}" class="category-card">
       <h2>{{ category }}</h2>
       {% assign category_art = site.art | where_exp: "item", "item.categories contains category" %}
       <p>{{ category_art.size }} pieces</p>
@@ -39,7 +39,7 @@ This is a collection of AI-generated artwork, organized by categories and automa
         </div>
         <div class="art-categories">
           {% for category in art.categories %}
-            <span class="category-tag">{{ category }}</span>
+            <a href="{{ '/categories/' | append: category | downcase | relative_url }}" class="category-tag">{{ category }}</a>
           {% endfor %}
         </div>
       </div>
@@ -131,5 +131,12 @@ This is a collection of AI-generated artwork, organized by categories and automa
   font-size: 0.875rem;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s ease;
+}
+
+.category-tag:hover {
+  background: #e0e0e0;
 }
 </style> 

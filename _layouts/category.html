@@ -1,23 +1,34 @@
 ---
 layout: default
 ---
+
 <div class="category-page">
   <h1>{{ page.title }}</h1>
   
   <div class="art-grid">
-    {% assign category_art = site.art | where_exp: "item", "item.categories contains page.category" %}
-    {% for art in category_art %}
-      <div class="art-card">
-        {% if art.image %}
-          <img src="{{ art.image | relative_url }}" alt="{{ art.title }}">
-        {% endif %}
-        <h3><a href="{{ art.url | relative_url }}">{{ art.title }}</a></h3>
-        <div class="art-categories">
-          {% for category in art.categories %}
-            <span class="category-tag">{{ category }}</span>
-          {% endfor %}
+    {% for art in site.art %}
+      {% if art.categories contains page.title %}
+        <div class="art-card">
+          {% if art.audio %}
+            <div class="audio-preview">
+              <audio controls>
+                <source src="{{ art.audio | relative_url }}" type="audio/mpeg">
+              </audio>
+            </div>
+          {% endif %}
+          <div class="art-content">
+            <h3><a href="{{ art.url | relative_url }}">{{ art.title }}</a></h3>
+            <div class="art-excerpt">
+              {{ art.content | strip_html | truncatewords: 30 }}
+            </div>
+            <div class="art-categories">
+              {% for category in art.categories %}
+                <a href="{{ '/categories/' | append: category | downcase | relative_url }}" class="category-tag">{{ category }}</a>
+              {% endfor %}
+            </div>
+          </div>
         </div>
-      </div>
+      {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -31,7 +42,7 @@ layout: default
 
 .art-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
@@ -42,21 +53,30 @@ layout: default
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .art-card:hover {
   transform: translateY(-5px);
 }
 
-.art-card img {
+.audio-preview {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.audio-preview audio {
   width: 100%;
-  height: 200px;
-  object-fit: cover;
+}
+
+.art-content {
+  padding: 1.5rem;
 }
 
 .art-card h3 {
-  padding: 1rem;
-  margin: 0;
+  margin: 0 0 1rem 0;
 }
 
 .art-card h3 a {
@@ -64,8 +84,14 @@ layout: default
   text-decoration: none;
 }
 
+.art-excerpt {
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
 .art-categories {
-  padding: 0 1rem 1rem;
+  margin-top: auto;
 }
 
 .category-tag {
@@ -76,5 +102,12 @@ layout: default
   font-size: 0.875rem;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s ease;
+}
+
+.category-tag:hover {
+  background: #e0e0e0;
 }
 </style> 
